@@ -5,7 +5,7 @@ pipeline {
         stage('git clone') {
             steps {
                 // cloning the repo jv
-                git changelog: false, poll: false, url: 'git@github.com:majjivinaykumar/jv.git'
+                git changelog: false, poll: false, url: 'https://github.com/majjivinaykumar/jv.git/'
                 echo 'git clone successfull'
             }
         }
