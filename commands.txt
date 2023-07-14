@@ -1,0 +1,10 @@
+#terraform
+
+#WSL
+cp /mnt/d/filelocation /home/ubuntu/jv
+
+#to get the ipaddress of the WSL system the below command is useful
+ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
+172.29.213.203
+
+github token: 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
