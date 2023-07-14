@@ -8,3 +8,6 @@ ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
 172.29.213.203
 
 github token: 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
+
+#to add the jenkins users to docker group so that jenkins user can communicate with docker daemon
+sudo usermod -aG docker jenkins
