@@ -2,20 +2,11 @@
 pipeline {
     agent any
     stages {
-    /*    stage('git clone') {
-            steps {
-                // cloning the repo jv
-                git changelog: false, poll: false, url: 'https://github.com/majjivinaykumar/jv.git/'
-                echo 'git clone successfull'
-            }
-        }
-        */
+        
+//this is for the docker images and containers
+/*             
         stage('Docker build') {
             steps {
-                /*
-                This is a multi-line comment.
-                It can span multiple lines.
-                */
                 echo 'Building the Dcker image'
                 sh 'docker build -t nginx-web:v1 .' 
             }
@@ -28,5 +19,37 @@ pipeline {
                 echo 'Docker container is running successfully with the static webpage. Browse with http://172.29.213.203:80'
             }
         }
+        */
+
+        stage('minikube start') {
+            steps {
+                echo 'starting the minikube'
+                sh 'minikube start'
+                sh 'minikube status'
+                sh 'kubectl config current-context'
+            }
+        }
+
+        stage('Deployment') {
+            steps {
+                echo 'Applying the deployment'
+                sh 'kubectl apply -f deployment.yaml'
+                sh 'kubectl get pods'
+                sh 'kubectl describe deployment nginx-deployment'
+            }
+        }
+
+        stage('Service') {
+            steps {
+                echo 'Applying the service'
+                sh 'kubectl apply -f service.yaml'
+                sh 'kubectl get service'
+                sh 'kubectl describe service nginx-service'
+            }
+        }
+
+
+
+
     }
 }

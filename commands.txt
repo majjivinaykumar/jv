@@ -11,3 +11,53 @@ github token: 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
 
 #to add the jenkins users to docker group so that jenkins user can communicate with docker daemon
 sudo usermod -aG docker jenkins
+
+
+ubuntu@DESKTOP-77QIJLL:~/jv$ kubectl describe service nginx-service
+Name:              nginx-service
+Namespace:         default
+Labels:            <none>
+Annotations:       <none>
+Selector:          app=my-app
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.101.62.216
+IPs:               10.101.62.216
+Port:              <unset>  80/TCP
+TargetPort:        80/TCP
+Endpoints:         10.244.0.17:80
+Session Affinity:  None
+Events:            <none>
+ubuntu@DESKTOP-77QIJLL:~/jv$ kubectl describe deployment nginx-deployment
+Name:                   nginx-deployment
+Namespace:              default
+CreationTimestamp:      Mon, 17 Jul 2023 22:30:08 +0530
+Labels:                 app=my-app
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=my-app
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=my-app
+  Containers:
+   nginxv2-container:
+    Image:        majjivinaykumar/nginx:v2
+    Port:         80/TCP
+    Host Port:    0/TCP
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   nginx-deployment-d7bbccb97 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  11m   deployment-controller  Scaled up replica set nginx-deployment-d7bbccb97 to 1
