@@ -2,13 +2,14 @@
 pipeline {
     agent any
     stages {
-        stage('git clone') {
+    /*    stage('git clone') {
             steps {
                 // cloning the repo jv
                 git changelog: false, poll: false, url: 'https://github.com/majjivinaykumar/jv.git/'
                 echo 'git clone successfull'
             }
         }
+        */
         stage('Docker build') {
             steps {
                 /*
