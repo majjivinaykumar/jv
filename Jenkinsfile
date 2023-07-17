@@ -24,7 +24,7 @@ pipeline {
         stage('minikube start') {
             steps {
                 echo 'starting the minikube'
-                sh 'minikube start'
+                //sh 'minikube start'
                 sh 'minikube status'
                 sh 'kubectl config current-context'
             }
